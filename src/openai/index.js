@@ -28,8 +28,7 @@ export async function getOpenAiReply(prompt) {
         console.log('🚀🚀🚀 / reply:', reply)
         return reply
     } catch (e) {
-        console.error('🤡🤡🤡 / reply:', '🤡🤡🤡系统繁忙🤡🤡🤡')
-        return "🤡🤡🤡 系统繁忙 🤡🤡🤡"
+        console.error('🤡🤡🤡')
     }
 
 }

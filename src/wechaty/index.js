@@ -45,9 +45,8 @@ async function onFriendShip(friendship) {
 async function onMessage(msg) {
     const messageTimestamp = Date.parse(new Date(msg.payload.timestamp * 1000).toString());
     const now = Date.parse(new Date().toString());
-    console.log(msg)
     // 回复两秒内的消息
-    if (now - messageTimestamp < 10000) {
+    if (now - messageTimestamp < 10 * 1000) {
         await defaultMessage(msg, bot)
     } else {
         console.log('10 秒之外的消息不回复...')

@@ -29,9 +29,9 @@ function onLogout(user) {
 
 // 收到好友请求
 async function onFriendShip(friendship) {
-    const frienddShipRe = /chatgpt|chat/
+    const friendShipRe = /chatgpt|chat/
     if (friendship.type() === 2) {
-        if (frienddShipRe.test(friendship.hello())) {
+        if (friendShipRe.test(friendship.hello())) {
             await friendship.accept()
         }
     }
@@ -40,20 +40,23 @@ async function onFriendShip(friendship) {
 /**
  * 消息发送
  * @param msg
- * @param isSharding
  * @returns {Promise<void>}
  */
 async function onMessage(msg) {
-    // 默认消息回复
-    await defaultMessage(msg, bot)
-    // 消息分片
-    // await shardingMessage(msg,bot)
+    const messageTimestamp = Date.parse(new Date(msg.payload.timestamp * 1000).toString());
+    const now = Date.parse(new Date().toString());
+    console.log(msg)
+    // 回复两秒内的消息
+    if (now - messageTimestamp < 10000) {
+        await defaultMessage(msg, bot)
+    } else {
+        console.log('10 秒之外的消息不回复...')
+    }
 }
 
 // 初始化机器人
 export const bot = WechatyBuilder.build({
     name: 'WechatEveryDay',
-    // puppet: 'wechaty-puppet-wechat4u', // 如果有token，记得更换对应的puppet
     puppet: 'wechaty-puppet-wechat', // 如果 wechaty-puppet-wechat 存在问题，也可以尝试使用上面的 wechaty-puppet-wechat4u ，记得安装 wechaty-puppet-wechat4u
     puppetOptions: {
         uos: true,
@@ -72,7 +75,6 @@ bot.on('message', onMessage)
 bot.on('friendship', onFriendShip)
 
 // 启动微信机器人
-bot
-    .start()
+bot.start()
     .then(() => console.log('Start to log in wechat...'))
     .catch((e) => console.error(e))

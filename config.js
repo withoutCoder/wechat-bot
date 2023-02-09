@@ -1,8 +1,12 @@
-// 定义机器人的名称，这里是为了防止群聊消息太多，所以只有艾特机器人才会回复，
-export const botName = 'xuebin'
+// 关键词
+export const keyword = 'payton'
 
 // 群聊白名单，白名单内的群聊才会自动回复
-export const roomWhiteList = ['chatgpt']
+export const roomWhiteList = ['chat-gpt']
 
-// 联系人白名单，白名单内的联系人才会自动回复
+// 关键词触发白名单
 export const aliasWhiteList = ['京墨小宝']
+
+// 自动回复白名单
+export const aliasAutoWhiteList = ['王文义']
+

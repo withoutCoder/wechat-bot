@@ -13,23 +13,23 @@ const openai = new OpenAIApi(configuration)
 export async function getOpenAiReply(prompt) {
     console.log('🚀🚀🚀 / prompt', prompt)
     try {
+        console.log('🙈🙈🙈 / send request...')
         const response = await openai.createCompletion({
             model: 'text-davinci-003',
             prompt: prompt,
-            temperature: 0.9, // 每次返回的答案的相似度0-1（0：每次都一样，1：每次都不一样）
-            max_tokens: 4000,
-            top_p: 1,
+            max_tokens: 1000,
+            temperature: 0.9,
             frequency_penalty: 0.0,
             presence_penalty: 0.6,
-            stop: [' Human:', ' AI:'],
+            stop: ['Human:', 'AI:'],
         })
-        console.log('🙉🙉🙉 / send request...')
+        console.log('🙉🙉🙉 / get response...')
         const reply = markdownToText(response.data.choices[0].text)
         console.log('🚀🚀🚀 / reply:', reply)
         return reply
     } catch (e) {
-        console.error('🤡🤡🤡 / reply:', '机器人消息处理繁忙')
-        return "机器人消息处理繁忙"
+        console.error('🤡🤡🤡 / reply:', '🤡🤡🤡系统繁忙🤡🤡🤡')
+        return "🤡🤡🤡 系统繁忙 🤡🤡🤡"
     }
 
 }

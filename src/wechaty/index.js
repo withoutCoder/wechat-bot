@@ -43,7 +43,6 @@ async function onFriendShip(friendship) {
  * @returns {Promise<void>}
  */
 async function onMessage(msg) {
-    console.log(msg);
     const messageTimestamp = Date.parse(new Date(msg.payload.timestamp * 1000).toString());
     const nowTimeStamp = Date.now();
     console.log(nowTimeStamp, messageTimestamp, nowTimeStamp - messageTimestamp);

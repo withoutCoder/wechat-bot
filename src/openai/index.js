@@ -28,7 +28,8 @@ export async function getOpenAiReply(prompt) {
         console.log('🚀🚀🚀 / reply:', reply)
         return reply
     } catch (e) {
-        console.error('🤡🤡🤡')
+        console.error('🤡🤡🤡 / error')
+        return '🤡🤡🤡'
     }
 
 }
